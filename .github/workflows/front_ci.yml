@@ -1,0 +1,57 @@
+name: Angular CI Pipeline
+
+on:
+#  push:
+#    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest #TODO find smaller image
+
+    defaults:
+      run:
+        working-directory: front-app
+
+    steps:
+      # Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Lint the Angular app
+      - name: Lint the project
+        run: npm run lint
+
+      # Scan with Trivy
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: 'CRITICAL,HIGH'
+
+      # Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+#      # Build and push Docker image
+#      - name: Build and Push Docker image
+#        run: |
+#          IMAGE_NAME=ghcr.io/${{ github.repository }}/front-app:latest
+#          docker build -t $IMAGE_NAME .
+#          docker push $IMAGE_NAME
