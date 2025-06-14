@@ -44,7 +44,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
-          scan-ref: .
+          scan-ref: front-app
           severity: 'CRITICAL,HIGH'
 
       # Log in to GitHub Container Registry
