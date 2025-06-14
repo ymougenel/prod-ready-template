@@ -63,9 +63,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build and push Docker image
-      - name: Build and Push Docker image
-        run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository }}/front-app:latest
-          docker build -t $IMAGE_NAME .
-          docker push $IMAGE_NAME
+      # Log in to GitHub Container Registry
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+
+      - name: Build and push Docker front image
+        uses: docker/build-push-action@v6
+        with:
+          context: front-app
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
