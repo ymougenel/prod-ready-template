@@ -49,7 +49,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest #TODO find smaller image
-
+    needs: tests
     steps:
 
       # Log in to GitHub Container Registry
