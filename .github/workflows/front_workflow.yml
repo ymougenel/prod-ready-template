@@ -51,6 +51,9 @@ jobs:
     runs-on: ubuntu-latest #TODO find smaller image
     needs: tests
     steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       # Log in to GitHub Container Registry
       - name: Log in to GitHub Container Registry
