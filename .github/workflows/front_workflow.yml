@@ -1,4 +1,4 @@
-name: Angular CI Pipeline
+name: Angular CI/CD Pipeline
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '23'
 
       # Install dependencies
       - name: Install dependencies
@@ -33,7 +33,7 @@ jobs:
 #      - name: Lint the project
 #        run: npm run lint
 
-      # Qyality Check
+      # Quality Check
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
@@ -44,7 +44,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
-          scan-ref: .
+          scan-ref: ./front-app
           severity: 'CRITICAL,HIGH'
 
   build:
