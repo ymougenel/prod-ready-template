@@ -2,8 +2,8 @@
 # CI / CD Template Project
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Front Pipeline](https://github.com/ymougenel/prod-ready-template/actions/workflows/front_workflow.yml/badge.svg)
-![Back Pipeline](https://github.com/ymougenel/prod-ready-template/actions/workflows/back_workflow.yml/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5a97cbd9-28d4-46e8-841c-6acffc83a287/deploy-status)](https://app.netlify.com/projects/template-front/deploys)
+![Back Pipeline](https://github.com/ymougenel/prod-ready-template/actions/workflows/backend_workflow.yml/badge.svg)
+![Netlify Status](https://api.netlify.com/api/v1/badges/5a97cbd9-28d4-46e8-841c-6acffc83a287/deploy-status)](https://app.netlify.com/projects/template-front/deploys)
 
 
 This repository is a **template project** designed to showcase a complete CI/CD pipeline — from **testing and code quality checks** all the way to **deployment in production**.
