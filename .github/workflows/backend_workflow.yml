@@ -70,3 +70,17 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Set up SSH
+        runs-on: alpine/ansible:2.17.0
+        run: |
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
+            chmod 600 private_key.pem
+
+      - name: Run Ansible Playbook
+        runs-on: alpine/ansible:2.17.0
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: False
+        run: |
+          ansible-playbook ansible/deploy_playbook.yml -i ansible/inventories/app.yml -i  "{{ secrets.ANSIBLE_IP }}," -e "ansible_user=${{ secrets.ANSIBLE_USER }}" --private-key private_key.pem 
+#          ansible-playbook -i inventory/hosts.ini playbooks/deploy_web_server.yml -u ${{ secrets.ANSIBLE_USER }}

@@ -1,0 +1,5 @@
+all:
+  vars:
+    APPLICATION_IMAGE: ghcr.io/ymougenel/prod-ready-template-api
+    APPLICATION_VERSION: main
+    APPLICATION_PORT: 8080
