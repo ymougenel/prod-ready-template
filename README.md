@@ -14,6 +14,8 @@ This repository is a **template project** designed to showcase a complete CI/CD 
 
 This project serves as a demonstration for the **Voxxed Days Luxembourg 2025** conference, illustrating how modern CI and CD practices can be applied to a real-world application.
 
+🎤 [View the slides from the talk](https://docs.google.com/presentation/d/e/2PACX-1vRAf05PFN4hYtN_ZY1uHfM3osnrK9nmvrVYSV05nyGvVxWCQMqBGKMUlO_OYiYC8LmnGVRu1Pp6y_Ij/pub?start=false&loop=false&delayms=3000#slide=id.g245bbab786a_0_604)
+
 ---
 
 ## 🛠 CI — Continuous Integration
@@ -41,8 +43,14 @@ The CD pipeline focuses on:
 
 This template includes **deployment strategies** to put your application into production:
 
-- Deployment to **managed services**
-- Deployment to **self-managed servers** with Ansible
+### 1. Managed Services Deployment
+Includes example configurations for deploying to cloud-based managed services such as Netlify and Koyeb.
+
+### 2. Self-managed Server Deployment with Ansible
+
+You can deploy the application on your own infrastructure using Ansible:
+* [Server Configuration example](https://github.com/Kavu-Dechet/Kavu-Server).
+* An automated delivery through the combination of Ansible and GitHub Actions. 
 
 ---
 
